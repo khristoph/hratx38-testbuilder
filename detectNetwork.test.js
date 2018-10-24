@@ -7,18 +7,18 @@
 // other places in this file where you'll replace the FILL_ME_IN with a
 // different value.
 var FILL_ME_IN = 'Fill this value in';
- 
+
 describe('Introduction to Mocha Tests - READ ME FIRST', function() {
   // A Mocha test is just a function!
   // If the function throws an error when run, it fails.
-  // If it doesn't throw an error when run, it doesn't fail. 
+  // If it doesn't throw an error when run, it doesn't fail.
   // To read more about mocha, visit mochajs.org
 
-  // Once you've read and understood this section, please comment it out. 
-  // You will not be able to proceed with a failing test. 
+  // Once you've read and understood this section, please comment it out.
+  // You will not be able to proceed with a failing test.
 
   it('Throws an error so it fails', function() {
-    throw new Error('Delete me!');
+    // throw new Error('Delete me!');
   });
 
   it('Doesn\'t throw an error, so it doesn\'t fail', function() {
@@ -33,7 +33,7 @@ describe('Introduction to Mocha Tests - READ ME FIRST', function() {
   // A test should only fail if the expected behavior doesn't match the actual.
   it('Throws an error when expected behavior does not match actual behavior', function() {
     var even = function(num){
-      return num/2 === 0;
+      return num % 2 === 0;
     }
 
     if(even(10) !== true) {
@@ -45,29 +45,29 @@ describe('Diner\'s Club', function() {
   // Be careful, tests can have bugs too...
 
   it('has a prefix of 38 and a length of 14', function() {
-    throw new Error('Delete me!');
- 
+    // throw new Error('Delete me!');
+
     if (detectNetwork('38345678901234') !== 'Diner\'s Club') {
       throw new Error('Test failed');
     }
   });
 
   it('has a prefix of 39 and a length of 14', function() {
-    if (detectNetwork('3934567890123') !== 'Diner\'s Club') {
+    if (detectNetwork('39345678901234') !== 'Diner\'s Club') {
       throw new Error('Test failed');
     }
- 
+
   });
 });
 
 describe('American Express', function() {
   // It can get annoying to keep typing the if/throw, so here is a
-  // helper function to throw an error if the input statement isn't true. 
+  // helper function to throw an error if the input statement isn't true.
   var assert = function(isTrue) {
-    if(isTrue) {
+    if(!isTrue) {
       throw new Error('Test failed');
     }
- 
+
   };
 
   it('has a prefix of 34 and a length of 15', function() {
@@ -82,10 +82,10 @@ describe('American Express', function() {
 describe('Visa', function() {
   // Chai is an entire library of helper functions for tests!
   // Chai provides an assert that acts the same as our previous assert.
-  // Search the documentation to figure out how to access it. 
+  // Search the documentation to figure out how to access it.
   //   http://chaijs.com/
-  var assert = chai.FILL_ME_IN;
- 
+  var assert = chai.assert;
+
 
   it('has a prefix of 4 and a length of 13', function() {
     assert(detectNetwork('4123456789012') === 'Visa');
@@ -102,53 +102,285 @@ describe('Visa', function() {
 
 describe('MasterCard', function() {
   // Chai lets you write more human-readable tests that throw helpful errors.
-  // Expect syntax is one way to do this, but there are others. 
-  // If you want to know more, check out the documentation. 
+  // Expect syntax is one way to do this, but there are others.
+  // If you want to know more, check out the documentation.
   //   http://chaijs.com/api/bdd/
   var expect = chai.expect;
- 
-  it(FILL_ME_IN, function() {
+
+  it('has a prefix of 51 and a length of 16', function() {
     expect(detectNetwork('5112345678901234')).to.equal('MasterCard');
   });
- 
-  it(FILL_ME_IN, function() {
+
+  it('has a prefix of 52 and a length of 16', function() {
     expect(detectNetwork('5212345678901234')).to.equal('MasterCard');
   });
- 
-  it(FILL_ME_IN, function() {
+
+  it('has a prefix of 53 and a length of 16', function() {
     expect(detectNetwork('5312345678901234')).to.equal('MasterCard');
   });
- 
+
 
   // You can also use should instead of expect, which changes the style
-  // slightly. It really doesn't matter which one you use - check out 
+  // slightly. It really doesn't matter which one you use - check out
   // http://chaijs.com/guide/styles/ for more info, but it's important
   // to be consistent (unlike in this file, where we use BOTH expect
-  // and should, but that's just for learning), so once you've gotten 
-  // these tests to pass using should syntax, refactor your tests to 
-  // use either expect or should, but not both. 
-  var should = chai.should();
-  
-  it('has a prefix of 54 and a length of 16', function() {
-    detectNetwork('5412345678901234').should.equal(FILL_ME_IN);
+  // and should, but that's just for learning), so once you've gotten
+  // these tests to pass using should syntax, refactor your tests to
+  // use either expect or should, but not both.
+
+
+
+   it('has a prefix of 54 and a length of 16', function() {
+    expect(detectNetwork('5212345678901234')).to.equal('MasterCard');
   });
- 
+
   it('has a prefix of 55 and a length of 16', function() {
-    detectNetwork('5512345678901234').should.equal(FILL_ME_IN);
-  })
- 
+    expect(detectNetwork('5312345678901234')).to.equal('MasterCard');
+  });
+
 });
 
 describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
-  it('has a prefix of 6011 and a length of 16');
-  it('has a prefix of 6011 and a length of 19');
+  var expect = chai.expect;
+
+  it('has a prefix of 6011 and a length of 16', function() {
+    expect(detectNetwork('6011345678901234')).to.equal('Discover');
+  });
+
+  it('has a prefix of 6011 and a length of 19', function() {
+      expect(detectNetwork('6011345678901234908')).to.equal('Discover');
+  });
+
+  it('has a prefix of 65 and a length of 16', function() {
+    expect(detectNetwork('6511345678901234')).to.equal('Discover');
+  });
+
+  it('has a prefix of 65 and a length of 19', function() {
+      expect(detectNetwork('6511345678901234908')).to.equal('Discover');
+  });
+
+
+  for (var prefix = 644; prefix <= 649; prefix++) {
+    (function(prefix) {
+
+      it('has a prefix of ' + prefix + ' and a length of 16', function(){
+        expect(detectNetwork(prefix + '1234567890123')).to.equal('Discover');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 19', function(){
+        expect(detectNetwork(prefix + '1234567890123460')).to.equal('Discover');
+      });
+
+    })(prefix)
+  }
+
 });
 
 describe('Maestro', function() {
   // Write full test coverage for the Maestro card
+   var expect = chai.expect;
+
+
+
+  for (var length = 12; length <= 19; length++) {
+    (function(length) {
+
+      it('has a prefix of 5018 and a length of ' + length, function(){
+        expect(detectNetwork('5018' + '1'.repeat(length-4) )).to.equal('Maestro');
+      });
+
+      it('has a prefix of 5020 and a length of ' + length, function(){
+        expect(detectNetwork('5020' + '1'.repeat(length-4) )).to.equal('Maestro');
+      });
+
+      it('has a prefix of 5038 and a length of ' + length, function(){
+        expect(detectNetwork('5038' + '1'.repeat(length-4) )).to.equal('Maestro');
+      });
+
+      it('has a prefix of 6304 and a length of ' + length, function(){
+        expect(detectNetwork('6304' + '1'.repeat(length-4) )).to.equal('Maestro');
+      });
+
+
+    })(length)
+  }
 });
 
-describe('should support China UnionPay')
-describe('should support Switch')
+describe('should support China UnionPay', function() {
+  var expect = chai.expect;
+
+    for (var prefix = 622126; prefix <= 622925; prefix++) {
+    (function(prefix) {
+
+      it('has a prefix of ' + prefix + ' and a length of 16', function(){
+        expect(detectNetwork(prefix + '1234567897')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 17', function(){
+        expect(detectNetwork(prefix + '12345678978')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 18', function(){
+        expect(detectNetwork(prefix + '123456789788')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 19', function(){
+        expect(detectNetwork(prefix + '1234567897888')).to.equal('China UnionPay');
+      });
+
+    })(prefix)
+  }
+
+      for (var prefix = 624; prefix <= 626; prefix++) {
+    (function(prefix) {
+
+      it('has a prefix of ' + prefix + ' and a length of 16', function(){
+        expect(detectNetwork(prefix + '3331234567897')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 17', function(){
+        expect(detectNetwork(prefix + '33312345678978')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 18', function(){
+        expect(detectNetwork(prefix + '333123456789788')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 19', function(){
+        expect(detectNetwork(prefix + '3331234567897888')).to.equal('China UnionPay');
+      });
+
+    })(prefix)
+  }
+
+      for (var prefix = 6282; prefix <= 6288; prefix++) {
+    (function(prefix) {
+
+      it('has a prefix of ' + prefix + ' and a length of 16', function(){
+        expect(detectNetwork(prefix + '031234567897')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 17', function(){
+        expect(detectNetwork(prefix + '0312345678978')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 18', function(){
+        expect(detectNetwork(prefix + '03123456789788')).to.equal('China UnionPay');
+      });
+
+      it('has a prefix of ' + prefix + ' and a length of 19', function(){
+        expect(detectNetwork(prefix + '031234567897888')).to.equal('China UnionPay');
+      });
+
+    })(prefix)
+  }
+
+});
+
+
+// Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
+// Heads up! Switch and Visa seem to have some overlapping card numbers - in any apparent conflict, you should choose the network with the longer prefix.
+
+
+describe('Switch', function() {
+
+var expect = chai.expect;
+var switchPrefix = ['4903', '4905', '4911', '4936', '6333', '6759']
+var switchPrefix6 = ['564182', '633110']
+var switchLength = ['16', '18', '19']
+
+     it('has a prefix of 4903 and a length of 16', function(){
+        expect(detectNetwork('4903823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 4905 and a length of 16', function(){
+        expect(detectNetwork('4905823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 4911 and a length of 16', function(){
+        expect(detectNetwork('4911823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 4936 and a length of 16', function(){
+        expect(detectNetwork('4936823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 6333 and a length of 16', function(){
+        expect(detectNetwork('6333823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 6759 and a length of 16', function(){
+        expect(detectNetwork('6759823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 564182 and a length of 16', function(){
+        expect(detectNetwork('5641828234567890')).to.equal('Switch');
+      });
+     it('has a prefix of 633110 and a length of 16', function(){
+        expect(detectNetwork('6331102345678966')).to.equal('Switch');
+      });
+
+
+
+
+     it('has a prefix of 4903 and a length of 18', function(){
+        expect(detectNetwork('490382345678901211')).to.equal('Switch');
+      });
+     it('has a prefix of 4905 and a length of 18', function(){
+        expect(detectNetwork('490582345678901222')).to.equal('Switch');
+      });
+     it('has a prefix of 4911 and a length of 18', function(){
+        expect(detectNetwork('491182345678901222')).to.equal('Switch');
+      });
+     it('has a prefix of 4936 and a length of 18', function(){
+        expect(detectNetwork('493682345678901222')).to.equal('Switch');
+      });
+     it('has a prefix of 6333 and a length of 18', function(){
+        expect(detectNetwork('633382345678901222')).to.equal('Switch');
+      });
+     it('has a prefix of 6759 and a length of 18', function(){
+        expect(detectNetwork('675982345678901222')).to.equal('Switch');
+      });
+     it('has a prefix of 564182 and a length of 18', function(){
+        expect(detectNetwork('564182345678901222')).to.equal('Switch');
+      });
+     it('has a prefix of 564182 and a length of 18', function(){
+        expect(detectNetwork('633110345678901222')).to.equal('Switch');
+      });
+
+
+
+var switchPrefix = ['4903', '4905', '4911', '4936', '6333', '6759']
+var switchPrefix6 = ['564182', '633110']
+var switchLength = ['16', '18', '19']
+
+
+
+     it('has a prefix of 4903 and a length of 19', function(){
+        expect(detectNetwork('4903823456789012444')).to.equal('Switch');
+      });
+     it('has a prefix of 4905 and a length of 19', function(){
+        expect(detectNetwork('4905641823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 4911 and a length of 19', function(){
+        expect(detectNetwork('4911641823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 4936 and a length of 19', function(){
+        expect(detectNetwork('4936641823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 6333 and a length of 19', function(){
+        expect(detectNetwork('6333641823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 6759 and a length of 19', function(){
+        expect(detectNetwork('6759641823456789012')).to.equal('Switch');
+      });
+     it('has a prefix of 564182 and a length of 19', function(){
+        expect(detectNetwork('5641821823456789012')).to.equal('Switch');
+      });
+        it('has a prefix of 633110 and a length of 19', function(){
+        expect(detectNetwork('6331101823456789012')).to.equal('Switch');
+      });
+
+
+
+
+
+
+
+});
